@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Phone, Mail, MapPin, Send, Check } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
 import heroImg from "@/assets/hero-desert.jpg";
 
 export const Route = createFileRoute("/contact")({
@@ -18,14 +17,13 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [sent, setSent] = useState(false);
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    (e.target as HTMLFormElement).reset();
-  }
+  const contacts = [
+    { icon: Phone, title: "الهاتف", value: "+213 555 000 000", href: "tel:+213555000000" },
+    { icon: MapPin, title: "العنوان", value: "ولاية البيّض، الجزائر", href: "https://maps.google.com/?q=El+Bayadh+Algeria" },
+    { icon: Mail, title: "البريد الإلكتروني", value: "info@elbayadh-travel.dz", href: "mailto:info@elbayadh-travel.dz" },
+    { icon: Facebook, title: "فيسبوك", value: "ElBayadhTravel", href: "https://facebook.com/ElBayadhTravel" },
+    { icon: Instagram, title: "إنستغرام", value: "@elbayadh.travel", href: "https://instagram.com/elbayadh.travel" },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -40,52 +38,30 @@ function ContactPage() {
       </section>
 
       <section className="py-20 px-6 lg:px-10">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-2 space-y-4">
-            {[
-              { icon: MapPin, title: "العنوان", value: "ولاية البيّض، الجزائر" },
-              { icon: Phone, title: "الهاتف", value: "+213 555 000 000" },
-              { icon: Mail, title: "البريد الإلكتروني", value: "info@elbayadh-travel.dz" },
-            ].map((c) => (
-              <div key={c.title} className="bg-card border border-border rounded-2xl p-6 flex items-start gap-4 hover:shadow-soft transition-smooth">
-                <div className="w-12 h-12 rounded-xl bg-gradient-sunset flex items-center justify-center shrink-0 shadow-glow">
-                  <c.icon className="w-5 h-5 text-primary-foreground" />
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12 animate-float-up">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">معلومات التواصل</h2>
+            <p className="text-muted-foreground">اختر الطريقة الأنسب للتواصل معنا</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {contacts.map((c) => (
+              <a
+                key={c.title}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group bg-card border border-border rounded-2xl p-6 flex items-start gap-4 hover:shadow-elegant hover:-translate-y-1 transition-smooth"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gradient-sunset flex items-center justify-center shrink-0 shadow-glow group-hover:scale-110 transition-smooth">
+                  <c.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-bold mb-1">{c.title}</h3>
-                  <p className="text-muted-foreground">{c.value}</p>
+                  <p className="text-muted-foreground text-sm break-words">{c.value}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
-
-          <form onSubmit={handleSubmit} className="lg:col-span-3 bg-card border border-border rounded-3xl p-8 lg:p-10 shadow-soft space-y-5">
-            <h2 className="text-2xl font-bold mb-2">أرسل لنا رسالة</h2>
-            <p className="text-muted-foreground text-sm mb-6">سنرد عليك في أقرب وقت ممكن</p>
-
-            <div className="grid sm:grid-cols-2 gap-5">
-              <Field label="الاسم الكامل" name="name" required />
-              <Field label="البريد الإلكتروني" name="email" type="email" required />
-            </div>
-            <Field label="رقم الهاتف" name="phone" type="tel" />
-            <Field label="الرحلة المطلوبة" name="tour" />
-            <div>
-              <label className="block text-sm font-semibold mb-2">رسالتك</label>
-              <textarea
-                name="message"
-                rows={5}
-                required
-                className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-smooth resize-none"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={sent}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-sunset text-primary-foreground font-bold shadow-elegant hover:scale-[1.02] transition-smooth disabled:opacity-70"
-            >
-              {sent ? (<><Check className="w-5 h-5" /> تم الإرسال بنجاح</>) : (<><Send className="w-5 h-5" /> إرسال الرسالة</>)}
-            </button>
-          </form>
         </div>
       </section>
 
@@ -94,16 +70,3 @@ function ContactPage() {
   );
 }
 
-function Field({ label, name, type = "text", required }: { label: string; name: string; type?: string; required?: boolean }) {
-  return (
-    <div>
-      <label className="block text-sm font-semibold mb-2">{label}{required && <span className="text-destructive"> *</span>}</label>
-      <input
-        type={type}
-        name={name}
-        required={required}
-        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-smooth"
-      />
-    </div>
-  );
-}
