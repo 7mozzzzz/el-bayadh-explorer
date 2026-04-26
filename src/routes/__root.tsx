@@ -33,11 +33,15 @@ export const Route = createRootRoute({
       { title: "رحلات البيّض — اكتشف كنوز ولاية البيّض السياحية والأثرية" },
       { name: "description", content: "وكالة سياحية متخصصة في تنظيم رحلات لاكتشاف المواقع الأثرية والسياحية في ولاية البيّض بالجزائر." },
       { name: "author", content: "El Bayadh Travel" },
-      { property: "og:title", content: "رحلات البيّض — وكالة السياحة" },
-      { property: "og:description", content: "اكتشف كنوز ولاية البيّض: نقوش صخرية، قصور أثرية، واحات وكثبان صحراوية." },
+      { property: "og:title", content: "رحلات البيّض — اكتشف كنوز ولاية البيّض السياحية والأثرية" },
+      { property: "og:description", content: "وكالة سياحية متخصصة في تنظيم رحلات لاكتشاف المواقع الأثرية والسياحية في ولاية البيّض بالجزائر." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "رحلات البيّض — اكتشف كنوز ولاية البيّض السياحية والأثرية" },
+      { name: "twitter:description", content: "وكالة سياحية متخصصة في تنظيم رحلات لاكتشاف المواقع الأثرية والسياحية في ولاية البيّض بالجزائر." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0583d86d-5e62-4e0d-baaa-5137437bd2c3/id-preview-cbb13732--8ec8c28d-3440-458d-b92c-aed06816f20b.lovable.app-1777216659784.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0583d86d-5e62-4e0d-baaa-5137437bd2c3/id-preview-cbb13732--8ec8c28d-3440-458d-b92c-aed06816f20b.lovable.app-1777216659784.png" },
     ],
     links: [
       {
