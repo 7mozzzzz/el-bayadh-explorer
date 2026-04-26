@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-sand-50: #fdf8f1;
   --color-sand-100: #faecd6;
@@ -21,8 +23,10 @@
   --color-oasis-600: #059669;
   --color-oasis-700: #047857;
 
-  --color-night-900: #1a0f0a;
-  --color-night-800: #2a1a10;
+  --color-night-900: #0a0a0a;
+  --color-night-800: #18181b;
+  --color-night-700: #27272a;
+  --color-night-600: #3f3f46;
 
   --font-sans: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Amiri", "Cairo", serif;
@@ -33,6 +37,14 @@ html, body {
   background: var(--color-sand-50);
   color: var(--color-sand-900);
   scroll-behavior: smooth;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+html.dark, html.dark body {
+  background: #0a0a0a;
+  color: #f5f5f5;
 }
 
 * {
@@ -51,9 +63,9 @@ html, body {
   .bg-gradient-hero {
     background: linear-gradient(
       to bottom,
-      rgba(26, 15, 10, 0.35) 0%,
-      rgba(26, 15, 10, 0.55) 60%,
-      rgba(26, 15, 10, 0.85) 100%
+      rgba(10, 10, 10, 0.35) 0%,
+      rgba(10, 10, 10, 0.55) 60%,
+      rgba(10, 10, 10, 0.85) 100%
     );
   }
 
@@ -78,6 +90,50 @@ html, body {
   }
 }
 
+/* DARK MODE OVERRIDES — clean black & white aesthetic with sunset accents */
+.dark .bg-gradient-sand {
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+}
+.dark .bg-sand-50 { background-color: #0a0a0a !important; }
+.dark .bg-sand-50\/90 { background-color: rgba(10, 10, 10, 0.9) !important; }
+.dark .bg-sand-100 { background-color: #18181b !important; }
+.dark .bg-white { background-color: #18181b !important; }
+.dark .text-sand-900 { color: #fafafa !important; }
+.dark .text-sand-800 { color: #e4e4e7 !important; }
+.dark .text-sand-700 { color: #a1a1aa !important; }
+.dark .text-sand-600 { color: #71717a !important; }
+.dark .text-sand-100 { color: #fafafa !important; }
+.dark .text-sand-300 { color: #a1a1aa !important; }
+.dark .text-sand-400 { color: #71717a !important; }
+.dark .border-sand-100 { border-color: #27272a !important; }
+.dark .border-sand-200 { border-color: #27272a !important; }
+.dark .border-sand-200\/60 { border-color: rgba(39, 39, 42, 0.7) !important; }
+.dark .bg-sand-100 { background-color: #18181b !important; }
+.dark .focus\:bg-white:focus { background-color: #27272a !important; }
+.dark .bg-sunset-500\/10 { background-color: rgba(249, 115, 22, 0.18) !important; }
+.dark .text-sunset-700 { color: #fdba74 !important; }
+.dark .bg-sand-100.hover\:bg-sunset-500:hover {
+  background-color: #f97316 !important;
+  color: white !important;
+}
+.dark .bg-night-900 { background-color: #050505 !important; }
+.dark .bg-sand-800 { background-color: #27272a !important; }
+.dark .border-sand-800\/60 { border-color: rgba(39, 39, 42, 0.8) !important; }
+.dark .shadow-warm {
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.6) !important;
+}
+.dark .shadow-elegant {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7) !important;
+}
+.dark .bg-gradient-hero {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
 @keyframes slow-zoom {
   from { transform: scale(1); }
   to { transform: scale(1.08); }
@@ -100,6 +156,14 @@ html, body {
 }
 .animate-fade-in {
   animation: fade-in 0.6s ease-out both;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
 }
 
 ::selection {

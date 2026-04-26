@@ -10,56 +10,45 @@ import {
   Building2,
   Map,
 } from "lucide-react";
+import { useI18n } from "@/i18n/I18nProvider";
+
+const geoImages = [0, 1, 2];
 
 export default function About() {
+  const { t, lang } = useI18n();
+  const facts = wilayaFacts[lang];
+  const dairaList = dairas[lang];
+  const imgs = [images.mountain, images.hero, images.oasis];
+
   return (
     <>
-      <PageHeader
-        title="عن ولاية البيض"
-        subtitle="نظرة شاملة على الموقع الجغرافي، التضاريس، المناخ، والتقسيم الإداري لولاية البيض."
-        image={images.mountain}
-      />
+      <PageHeader title={t.about.title} subtitle={t.about.subtitle} image={images.mountain} />
 
       {/* INTRO */}
       <section className="py-20 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block px-3 py-1 rounded-full bg-sunset-500/10 text-sunset-700 text-xs font-semibold mb-3 uppercase tracking-wider">
-              نظرة عامة
+              {t.about.introEyebrow}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-sand-900 mb-6 leading-tight">
-              ولاية في قلب الأطلس الصحراوي
+              {t.about.introTitle}
             </h2>
             <div className="space-y-4 text-sand-800 text-lg leading-relaxed">
-              <p>
-                تقع ولاية البيض في الجنوب الغربي للجزائر، وتمتدّ على مساحة
-                شاسعة من السهول العليا إلى الكثبان الرملية. عاصمتها مدينة البيض
-                التي تجمع بين العمق التاريخي والحداثة العمرانية.
-              </p>
-              <p>
-                تتميّز الولاية بتنوّع تضاريسها: جبال الأطلس الصحراوي شمالاً،
-                هضاب وسهوب رعوية في الوسط، وكثبان رملية وواحات في الجنوب. هذا
-                التنوع جعل منها بيئة فريدة جامعة للمناظر الجبلية والصحراوية في
-                آن واحد.
-              </p>
-              <p>
-                يحدّها من الشمال ولاية سعيدة، ومن الشرق الأغواط، ومن الغرب نعامة
-                وتلمسان، ومن الجنوب أدرار وبشار. هذا الموقع جعلها معبراً
-                تاريخياً للقوافل بين الشمال والصحراء.
-              </p>
+              <p>{t.about.introP1}</p>
+              <p>{t.about.introP2}</p>
+              <p>{t.about.introP3}</p>
             </div>
           </div>
           <div className="relative">
             <img
               src={images.oasis}
-              alt="منظر طبيعي في البيض"
+              alt={t.about.title}
               className="rounded-3xl shadow-elegant w-full aspect-[4/5] object-cover"
             />
             <div className="absolute -bottom-6 -start-6 bg-white rounded-2xl p-5 shadow-elegant border border-sand-100 max-w-xs">
-              <div className="text-xs text-sand-600 mb-1">رمز الولاية</div>
-              <div className="text-3xl font-extrabold text-gradient-sunset">
-                32
-              </div>
+              <div className="text-xs text-sand-600 mb-1">{t.about.wilayaCodeLabel}</div>
+              <div className="text-3xl font-extrabold text-gradient-sunset">32</div>
             </div>
           </div>
         </div>
@@ -69,44 +58,20 @@ export default function About() {
       <section className="py-20 px-6 lg:px-10 bg-gradient-sand">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
-            eyebrow="بطاقة تعريف"
-            title="معلومات أساسية"
-            subtitle="أبرز الأرقام والحقائق التي تميّز ولاية البيض."
+            eyebrow={t.about.factsEyebrow}
+            title={t.about.factsTitle}
+            subtitle={t.about.factsSubtitle}
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
-            <Fact icon={Map} label="المساحة" value={wilayaFacts.area} />
-            <Fact
-              icon={Building2}
-              label="عدد السكان"
-              value={wilayaFacts.population}
-            />
-            <Fact
-              icon={Globe2}
-              label="الكثافة السكانية"
-              value={wilayaFacts.density}
-            />
-            <Fact icon={MapPin} label="العاصمة" value={wilayaFacts.capital} />
-            <Fact
-              icon={Building2}
-              label="التقسيم"
-              value={`${wilayaFacts.daira} • ${wilayaFacts.communes}`}
-            />
-            <Fact
-              icon={Mountain}
-              label="الارتفاع"
-              value={wilayaFacts.altitude}
-            />
-            <Fact
-              icon={Thermometer}
-              label="المناخ"
-              value={wilayaFacts.climate}
-            />
-            <Fact
-              icon={Languages}
-              label="اللغات المتداولة"
-              value={wilayaFacts.language}
-            />
-            <Fact icon={Globe2} label="رمز الولاية" value={wilayaFacts.code} />
+            <Fact icon={Map} label={t.about.factArea} value={facts.area} />
+            <Fact icon={Building2} label={t.about.factPopulation} value={facts.population} />
+            <Fact icon={Globe2} label={t.about.factDensity} value={facts.density} />
+            <Fact icon={MapPin} label={t.about.factCapital} value={facts.capital} />
+            <Fact icon={Building2} label={t.about.factDivision} value={`${facts.daira} • ${facts.communes}`} />
+            <Fact icon={Mountain} label={t.about.factAltitude} value={facts.altitude} />
+            <Fact icon={Thermometer} label={t.about.factClimate} value={facts.climate} />
+            <Fact icon={Languages} label={t.about.factLanguage} value={facts.language} />
+            <Fact icon={Globe2} label={t.about.factCode} value={facts.code} />
           </div>
         </div>
       </section>
@@ -114,26 +79,11 @@ export default function About() {
       {/* GEOGRAPHY */}
       <section className="py-20 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            eyebrow="جغرافيا وتضاريس"
-            title="تنوع جغرافي فريد"
-          />
+          <SectionHeader eyebrow={t.about.geoEyebrow} title={t.about.geoTitle} />
           <div className="grid md:grid-cols-3 gap-6 mt-14">
-            <GeoCard
-              title="الجبال"
-              text="جبال الأطلس الصحراوي شمالاً، أبرزها جبل قصل (2008م) وجبل عيسى. غابات أرز وصنوبر وثلوج شتوية."
-              image={images.mountain}
-            />
-            <GeoCard
-              title="السهوب والهضاب"
-              text="سهوب رعوية شاسعة بنبتة الحلفاء، تشكل عماد تربية المواشي. مساحات مفتوحة بألوان ذهبية متغيرة فصلياً."
-              image={images.hero}
-            />
-            <GeoCard
-              title="الصحراء والواحات"
-              text="جنوب الولاية تمتد الكثبان الرملية والصحراء، وتنتشر الواحات كنقاط حياة بالنخيل والعيون الطبيعية."
-              image={images.oasis}
-            />
+            {t.about.geo.map((g, i) => (
+              <GeoCard key={g.title} title={g.title} text={g.text} image={imgs[geoImages[i]]} />
+            ))}
           </div>
         </div>
       </section>
@@ -142,12 +92,12 @@ export default function About() {
       <section className="py-20 px-6 lg:px-10 bg-sand-100">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
-            eyebrow="التقسيم الإداري"
-            title="الدوائر والبلديات"
-            subtitle="تتكون ولاية البيض من 8 دوائر تضمّ 22 بلدية."
+            eyebrow={t.about.adminEyebrow}
+            title={t.about.adminTitle}
+            subtitle={t.about.adminSubtitle}
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
-            {dairas.map((d) => (
+            {dairaList.map((d) => (
               <div
                 key={d.name}
                 className="bg-white rounded-2xl p-6 shadow-warm border border-sand-200/60 hover:shadow-elegant transition-smooth"
@@ -156,7 +106,9 @@ export default function About() {
                   <div className="w-9 h-9 rounded-lg bg-sunset-500/10 text-sunset-700 flex items-center justify-center">
                     <MapPin className="w-4 h-4" />
                   </div>
-                  <h3 className="font-bold text-sand-900">دائرة {d.name}</h3>
+                  <h3 className="font-bold text-sand-900">
+                    {t.about.daira} {d.name}
+                  </h3>
                 </div>
                 <ul className="text-sand-700 text-sm space-y-1">
                   {d.communes.map((c) => (

@@ -1,40 +1,40 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
-import { navLinks } from "@/data/content";
+import { navKeys } from "@/data/content";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function Footer() {
+  const { t, lang } = useI18n();
   return (
     <footer className="bg-night-900 text-sand-100 mt-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-5">
             <div className="w-12 h-12 rounded-xl bg-gradient-sunset flex items-center justify-center text-white font-extrabold">
-              ب
+              {lang === "ar" ? "ب" : "B"}
             </div>
             <div>
-              <div className="font-extrabold text-xl">ولاية البيض</div>
+              <div className="font-extrabold text-xl">{t.common.wilaya}</div>
               <div className="text-xs text-sand-300">
                 El Bayadh — Wilaya 32
               </div>
             </div>
           </div>
           <p className="text-sand-300 leading-relaxed max-w-md">
-            بوابة معلوماتية شاملة عن ولاية البيض الجزائرية: تاريخها العريق،
-            ثقافتها الأصيلة، اقتصادها المتنوع، ومعالمها السياحية الساحرة في قلب
-            الأطلس الصحراوي.
+            {t.footer.tagline}
           </p>
         </div>
 
         <div>
-          <h4 className="font-bold mb-4 text-sand-100">روابط سريعة</h4>
+          <h4 className="font-bold mb-4 text-sand-100">{t.footer.quickLinks}</h4>
           <ul className="space-y-2 text-sand-300">
-            {navLinks.map((l) => (
+            {navKeys.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
                   className="hover:text-sunset-400 transition-smooth"
                 >
-                  {l.label}
+                  {t.nav[l.key]}
                 </Link>
               </li>
             ))}
@@ -42,11 +42,11 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="font-bold mb-4 text-sand-100">تواصل</h4>
+          <h4 className="font-bold mb-4 text-sand-100">{t.footer.contact}</h4>
           <ul className="space-y-3 text-sand-300 text-sm">
             <li className="flex items-start gap-2">
               <MapPin className="w-4 h-4 mt-0.5 text-sunset-400 shrink-0" />
-              <span>ولاية البيض، الجزائر</span>
+              <span>{t.contact.addressValue}</span>
             </li>
             <li className="flex items-start gap-2">
               <Phone className="w-4 h-4 mt-0.5 text-sunset-400 shrink-0" />
@@ -78,7 +78,7 @@ export function Footer() {
 
       <div className="border-t border-sand-800/60">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 text-center text-sm text-sand-400">
-          © {new Date().getFullYear()} ولاية البيض — جميع الحقوق محفوظة.
+          © {new Date().getFullYear()} {t.common.wilaya} — {t.footer.rights}.
         </div>
       </div>
     </footer>
