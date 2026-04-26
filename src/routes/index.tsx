@@ -25,7 +25,7 @@ function HomePage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative h-screen min-h-[640px] w-full overflow-hidden">
+      <section className="relative min-h-screen w-full overflow-hidden flex flex-col">
         <img
           src={heroImg}
           alt="صحراء ولاية البيّض"
@@ -34,7 +34,7 @@ function HomePage() {
           className="absolute inset-0 w-full h-full object-cover animate-slow-zoom"
         />
         <div className="absolute inset-0 bg-gradient-hero" />
-        <div className="relative z-10 h-full flex items-center">
+        <div className="relative z-10 flex-1 flex items-center pt-32 pb-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">
             <div className="max-w-2xl text-white animate-float-up">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-sm border border-white/20 mb-6">
@@ -64,10 +64,10 @@ function HomePage() {
           </div>
         </div>
 
-        {/* Floating stats */}
-        <div className="absolute bottom-10 inset-x-0 z-10">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-white">
+        {/* Stats bar */}
+        <div className="relative z-10 px-6 lg:px-10 pb-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-white shadow-elegant">
               <Stat n="+25" label="موقع سياحي" />
               <Stat n="+1200" label="مسافر سعيد" />
               <Stat n="10" label="سنوات خبرة" />
