@@ -29,11 +29,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "رحلات البيّض — اكتشف كنوز ولاية البيّض السياحية والأثرية" },
+      { name: "description", content: "وكالة سياحية متخصصة في تنظيم رحلات لاكتشاف المواقع الأثرية والسياحية في ولاية البيّض بالجزائر." },
+      { name: "author", content: "El Bayadh Travel" },
+      { property: "og:title", content: "رحلات البيّض — وكالة السياحة" },
+      { property: "og:description", content: "اكتشف كنوز ولاية البيّض: نقوش صخرية، قصور أثرية، واحات وكثبان صحراوية." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -42,6 +42,19 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap",
       },
     ],
   }),
